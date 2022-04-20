@@ -40,16 +40,24 @@ public class PostController {
     }
 
     @GetMapping("/all")
-    public List<Post> getAllPosts(){
+    public List<Post> getAllPosts() {
         return postService.findAllPosts();
     }
+
     @PostMapping("/add")
-    public void addPost(@RequestBody Post post){
+    public void addPost(@RequestBody Post post) {
         postService.addPost(post);
     }
+
     @GetMapping("{id}")
-    public Optional<Post> getPostById(@PathVariable Long id){
+    public Optional<Post> getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
     }
 
+    @GetMapping("/filter")
+    public List<Post> filter(
+            @RequestParam(required = false, defaultValue = "") String filter
+    ){
+        return postService.filter(filter);
+    }
 }

@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @PostMapping("/update/{id}")
-    public void updateUser(@PathVariable Long id, @RequestBody User user) throws IOException {
+    public void updateUser(@PathVariable Long id, @RequestBody User user){
         userRepo.findById(id).orElseThrow(UserNotExistException::new);
             userService.updateUser(id,user);
     }
